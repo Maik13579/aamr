@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="navigate">
+
+	<executable package_path="nav_behaviors.navigate_sm" class="navigateSM" />
+	<tagstring>nav, move_base</tagstring>
+	<author>Maik Knof</author>
+	<date>Sat Sep 30 2023</date>
+	<description>
+		Navigate to pose using move_base
+	</description>
+
+
+	<!-- Contained Behaviors -->
+
+	<!-- Available Parameters -->
+
+</behavior>
