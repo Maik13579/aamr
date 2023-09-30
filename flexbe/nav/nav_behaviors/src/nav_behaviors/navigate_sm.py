@@ -46,14 +46,14 @@ class navigateSM(Behavior):
 	def create(self):
 		# x:704 y:76, x:362 y:160
 		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed'], input_keys=['frame_id', 'x', 'y', 'z', 'xq', 'yq', 'zq', 'wq'])
-		_state_machine.userdata.frame_id = "map"
-		_state_machine.userdata.x = -3.0
-		_state_machine.userdata.y = 3.0
+		_state_machine.userdata.frame_id = ""
+		_state_machine.userdata.x = 0.0
+		_state_machine.userdata.y = 0.0
 		_state_machine.userdata.z = 0.0
 		_state_machine.userdata.xq = 0.0
 		_state_machine.userdata.yq = 0.0
-		_state_machine.userdata.zq = 0.924
-		_state_machine.userdata.wq = 0.383
+		_state_machine.userdata.zq = 0.0
+		_state_machine.userdata.wq = 0.0
 
 		# Additional creation code can be added inside the following tags
 		# [MANUAL_CREATE]

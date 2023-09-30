@@ -46,11 +46,11 @@ class look_to_pointSM(Behavior):
 	def create(self):
 		# x:710 y:136, x:323 y:225, x:519 y:229
 		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed', 'timeout'], input_keys=['x_coordinate', 'y_coordinate', 'z_coordinate', 'frame_id', 'duration'])
-		_state_machine.userdata.x_coordinate = -4.0
-		_state_machine.userdata.y_coordinate = 4.0
-		_state_machine.userdata.z_coordinate = 0.5
-		_state_machine.userdata.frame_id = "map"
-		_state_machine.userdata.duration = 3.0
+		_state_machine.userdata.x_coordinate = 0.0
+		_state_machine.userdata.y_coordinate = 0.0
+		_state_machine.userdata.z_coordinate = 0.0
+		_state_machine.userdata.frame_id = ""
+		_state_machine.userdata.duration = 0.0
 
 		# Additional creation code can be added inside the following tags
 		# [MANUAL_CREATE]
