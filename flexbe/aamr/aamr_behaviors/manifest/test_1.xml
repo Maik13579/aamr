@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<behavior name="test_1">
+
+	<executable package_path="aamr_behaviors.test_1_sm" class="test_1SM" />
+	<tagstring>test</tagstring>
+	<author>Maik Knof</author>
+	<date>Sat Sep 30 2023</date>
+	<description>
+		move to table
+look to table
+	</description>
+
+
+	<!-- Contained Behaviors -->
+	<contains name="navigate" />
+	<contains name="look_to_point" />
+
+	<!-- Available Parameters -->
+
+</behavior>
