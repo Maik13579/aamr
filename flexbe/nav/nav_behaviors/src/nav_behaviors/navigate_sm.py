@@ -45,7 +45,7 @@ class navigateSM(Behavior):
 
 	def create(self):
 		# x:704 y:76, x:362 y:160
-		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed'])
+		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed'], input_keys=['frame_id', 'x', 'y', 'z', 'xq', 'yq', 'zq', 'wq'])
 		_state_machine.userdata.frame_id = "map"
 		_state_machine.userdata.x = -3.0
 		_state_machine.userdata.y = 3.0
