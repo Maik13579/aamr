@@ -52,8 +52,8 @@ class navigateSM(Behavior):
 		_state_machine.userdata.z = 0.0
 		_state_machine.userdata.xq = 0.0
 		_state_machine.userdata.yq = 0.0
-		_state_machine.userdata.zq = 0.0
-		_state_machine.userdata.wq = 1.0
+		_state_machine.userdata.zq = 0.924
+		_state_machine.userdata.wq = 0.383
 
 		# Additional creation code can be added inside the following tags
 		# [MANUAL_CREATE]
