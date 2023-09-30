@@ -1,8 +1,8 @@
-version: '2.4'
+version: '3.9'
 services:
   tiago-sim:
     container_name: aamr_tiago-sim
-    image: tiago-sim:noetic #https://github.com/Maik13579/tiago-sim
+    image: aamr:noetic 
     runtime: nvidia
     environment:
       DISPLAY: $DISPLAY
@@ -21,3 +21,48 @@ services:
       - $HOME/.Xauthority:/root/.Xauthority
       - ../config/rviz:/rviz_config
     command: roslaunch tiago_sim tiago_sim.launch x:=-1.0 y:=-4.5 yaw:=1.57 rviz_config:=/rviz_config/aamr.rviz
+
+  flexbe:
+    container_name: aamr_flexbe
+    image: aamr:noetic
+    runtime: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+      WAIT_FOR_ROSCORE: 0
+      ROS_IP: $ROS_IP
+      ROS_HOSTNAME: $ROS_HOSTNAME
+      ROS_MASTER_URI: $ROS_MASTER_URI
+      QT_X11_NO_MITSHM: '1'
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,video,utility,graphics
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - ../config/rviz:/rviz_config
+    command: roslaunch flexbe_app flexbe_full.launch
+
+  dev:
+    container_name: aamr_dev
+    image: aamr:noetic
+    runtime: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+      WAIT_FOR_ROSCORE: 0
+      ROS_IP: $ROS_IP
+      ROS_HOSTNAME: $ROS_HOSTNAME
+      ROS_MASTER_URI: $ROS_MASTER_URI
+      QT_X11_NO_MITSHM: '1'
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,video,utility,graphics
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - ../config:/config
+      - ../flexbe:/root/catkin_ws/src/flexbe
+    command: tail -f /dev/null
