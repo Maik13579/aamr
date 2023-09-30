@@ -1,0 +1,23 @@
+version: '2.4'
+services:
+  tiago-sim:
+    container_name: aamr_tiago-sim
+    image: tiago-sim:noetic #https://github.com/Maik13579/tiago-sim
+    runtime: nvidia
+    environment:
+      DISPLAY: $DISPLAY
+      WAIT_FOR_ROSCORE: 0
+      ROS_IP: $ROS_IP
+      ROS_HOSTNAME: $ROS_HOSTNAME
+      ROS_MASTER_URI: $ROS_MASTER_URI
+      QT_X11_NO_MITSHM: '1'
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,video,utility,graphics
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+      - ../config/rviz:/rviz_config
+    command: roslaunch tiago_sim tiago_sim.launch x:=-1.0 y:=-4.5 yaw:=1.57 rviz_config:=/rviz_config/aamr.rviz
