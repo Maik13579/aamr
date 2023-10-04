@@ -43,6 +43,7 @@ services:
       - $HOME/.Xauthority:/root/.Xauthority
       - ../config:/config
       - ../flexbe:/root/catkin_ws/src/flexbe
+      - ../ros:/root/catkin_ws/src/ros
     command: roslaunch flexbe_app flexbe_full.launch
 
   dev:
@@ -66,4 +67,5 @@ services:
       - $HOME/.Xauthority:/root/.Xauthority
       - ../config:/config
       - ../flexbe:/root/catkin_ws/src/flexbe
+      - ../ros:/root/catkin_ws/src/ros
     command: tail -f /dev/null

@@ -1,6 +1,16 @@
 #https://github.com/Maik13579/tiago-sim
 FROM tiago-sim:noetic as base
 
+RUN apt update && apt install -y\
+  python3-pip \
+  ffmpeg libsm6 libxext6 \
+  ros-$ROS_DISTRO-tf \
+  ros-$ROS_DISTRO-tf2-sensor-msgs \
+  ros-$ROS_DISTRO-tf2-geometry-msgs \
+&& pip3 install --upgrade open3d numpy compas scipy python-dateutil\
+&& rm -rf /var/lib/apt/lists/*
+RUN pip3 install opencv-python
+
 # Clone FlexBE
 WORKDIR /root/catkin_ws/src
 RUN git clone -b upstream/1.3.1 https://github.com/FlexBE/flexbe_behavior_engine-release.git
@@ -15,6 +25,7 @@ RUN apt update \
 
 # Get source code
 COPY flexbe /root/catkin_ws/src/flexbe
+COPY ros /root/catkin_ws/src/ros
 
 FROM base as build
 WORKDIR /root/catkin_ws
