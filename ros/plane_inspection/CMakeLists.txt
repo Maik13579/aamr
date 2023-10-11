@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(plane_detection)
+project(plane_inspection)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy

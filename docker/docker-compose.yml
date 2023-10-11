@@ -46,6 +46,7 @@ services:
       - ../ros:/root/catkin_ws/src/ros
     command: roslaunch flexbe_app flexbe_full.launch
 
+
   dev:
     container_name: aamr_dev
     image: aamr:noetic
@@ -68,4 +69,9 @@ services:
       - ../config:/config
       - ../flexbe:/root/catkin_ws/src/flexbe
       - ../ros:/root/catkin_ws/src/ros
-    command: tail -f /dev/null
+    command: 
+      - bash
+      - -c
+      - |
+          rosrun plane_inspection main.py&
+          tail -f /dev/null

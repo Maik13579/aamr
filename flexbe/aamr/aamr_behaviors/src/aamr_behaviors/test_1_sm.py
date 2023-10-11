@@ -9,6 +9,7 @@
 
 from flexbe_core import Behavior, Autonomy, OperatableStateMachine, ConcurrencyContainer, PriorityContainer, Logger
 from nav_behaviors.navigate_sm import navigateSM
+from perception_states.plane_inspection import PlaneInspectionState
 from robot_control_behaviors.look_to_point_sm import look_to_pointSM
 # Additional imports can be added inside the following tags
 # [MANUAL_IMPORT]
@@ -47,7 +48,7 @@ look to table
 
 
 	def create(self):
-		# x:640 y:53, x:130 y:365
+		# x:772 y:79, x:130 y:365
 		_state_machine = OperatableStateMachine(outcomes=['finished', 'failed'])
 		_state_machine.userdata.frame_id = "map"
 		_state_machine.userdata.x = -3.0
@@ -60,7 +61,7 @@ look to table
 		_state_machine.userdata.x_coordinate = -4.0
 		_state_machine.userdata.y_coordinate = 4.0
 		_state_machine.userdata.z_coordinate = 0.4
-		_state_machine.userdata.duration = 2.0
+		_state_machine.userdata.duration = 3.0
 
 		# Additional creation code can be added inside the following tags
 		# [MANUAL_CREATE]
@@ -76,12 +77,18 @@ look to table
 										autonomy={'finished': Autonomy.Inherit, 'failed': Autonomy.Inherit},
 										remapping={'frame_id': 'frame_id', 'x': 'x', 'y': 'y', 'z': 'z', 'xq': 'xq', 'yq': 'yq', 'zq': 'zq', 'wq': 'wq'})
 
-			# x:383 y:75
+			# x:362 y:55
 			OperatableStateMachine.add('look_to_point',
 										self.use_behavior(look_to_pointSM, 'look_to_point'),
-										transitions={'finished': 'finished', 'failed': 'failed', 'timeout': 'failed'},
+										transitions={'finished': 'inspect_plane', 'failed': 'inspect_plane', 'timeout': 'inspect_plane'},
 										autonomy={'finished': Autonomy.Inherit, 'failed': Autonomy.Inherit, 'timeout': Autonomy.Inherit},
 										remapping={'x_coordinate': 'x_coordinate', 'y_coordinate': 'y_coordinate', 'z_coordinate': 'z_coordinate', 'frame_id': 'frame_id', 'duration': 'duration'})
+
+			# x:594 y:119
+			OperatableStateMachine.add('inspect_plane',
+										PlaneInspectionState(plane_min_x=0.1, plane_min_y=0.1, eps=0.01, min_height=0.25, max_height=1.5),
+										transitions={'done': 'finished', 'failed': 'failed'},
+										autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
 
 		return _state_machine

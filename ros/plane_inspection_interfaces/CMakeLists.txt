@@ -1,30 +1,22 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(plane_detection_interfaces)
+project(plane_inspection_interfaces)
 
 find_package(catkin REQUIRED
   rospy
   std_msgs
   visualization_msgs
-  sensor_msgs
   message_generation
 )
 
- add_message_files(
-    FILES
-    Plane.msg
-    PlaneEquation.msg
- )
-
  add_service_files(
    FILES
-   DetectPlanes.srv
+   InspectPlane.srv
  )
 
  generate_messages(
    DEPENDENCIES
    std_msgs  # Or other packages containing msgs
    visualization_msgs
-   sensor_msgs
  )
 
 catkin_package(
@@ -39,4 +31,3 @@ include_directories(
 # include
 # ${catkin_INCLUDE_DIRS}
 )
-
