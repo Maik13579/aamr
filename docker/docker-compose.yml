@@ -22,6 +22,21 @@ services:
       - ../config/rviz:/rviz_config
     command: roslaunch tiago_sim tiago_sim.launch x:=-1.0 y:=-4.5 yaw:=1.57 rviz_config:=/rviz_config/aamr.rviz
 
+  spawn_objects:
+    container_name: aamr_object_spawner
+    image: aamr:noetic 
+    environment:
+      WAIT_FOR_ROSCORE: 1
+      ROS_IP: $ROS_IP
+      ROS_HOSTNAME: $ROS_HOSTNAME
+      ROS_MASTER_URI: $ROS_MASTER_URI
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    volumes:
+      - ../scripts:/scripts
+    command: python3 /scripts/spawn_objects.py
+    
   flexbe:
     container_name: aamr_flexbe
     image: aamr:noetic

@@ -58,7 +58,7 @@ def create_marker_from_bb(bb: List[np.ndarray], ns: str, frame_id: str, color: T
     marker.ns = ns
     marker.type = marker.CUBE
     marker.header.frame_id = frame_id
-    marker.color.a = 0.5
+    marker.color.a = 0.75
     marker.color.r = color[0]
     marker.color.g = color[1]
     marker.color.b = color[2]

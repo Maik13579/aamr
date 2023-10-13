@@ -86,7 +86,7 @@ look to table
 
 			# x:594 y:119
 			OperatableStateMachine.add('inspect_plane',
-										PlaneInspectionState(plane_min_x=0.1, plane_min_y=0.1, eps=0.01, min_height=0.25, max_height=1.5),
+										PlaneInspectionState(plane_min_x=0.1, plane_min_y=0.1, eps=0.025, min_height=0.25, max_height=1.5),
 										transitions={'done': 'finished', 'failed': 'failed'},
 										autonomy={'done': Autonomy.Off, 'failed': Autonomy.Off})
 
